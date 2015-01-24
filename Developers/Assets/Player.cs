@@ -1,0 +1,71 @@
+//#define DIR4_MOVEMENT
+
+
+using UnityEngine;
+using System.Collections;
+
+[RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(GridMovingObject))]
+[AddComponentMenu("Entities/Player")]
+public class Player : MonoBehaviour
+{
+    PlayerInput pi;
+    
+    Vector3 Destination;
+    GridInfo TargetPos;
+    bool Moving;
+    GridMovingObject GridMovingObject;
+
+    public float MovementSpeedValue;
+
+    // Use this for initialization
+    void Start()
+    {
+        pi = GetComponent<PlayerInput>();
+        GridMovingObject = GetComponent<GridMovingObject>();
+    }
+	
+    // Update is called once per frame
+    void Update()
+    {
+        if (Moving)
+        {
+            GridMovingObject.StepTo(Destination, MovementSpeedValue);
+        } else
+        {
+            if (TurnManager.State == TurnState.Idle)
+            {
+                if (pi.MoveForward)
+                {
+                    Debug.Log("MOVING");
+                    StartMove();
+                    GridMovingObject.MoveForward();
+                } 
+#if DIR4_MOVEMENT
+                else if (pi.MoveBack)
+                {
+                    
+                }
+#endif
+            }
+        }
+    }
+
+    public void DoMove()
+    {
+
+    }
+    void StartMove()
+    {
+        pi.ResetButtons();
+        Moving = true;
+        TurnManager.DoTurn();
+    }
+    void StopMove()
+    {
+        Moving = false;
+    }
+
+
+
+}
