@@ -10,7 +10,7 @@ public class Grid:MonoBehaviour
     
     static int m_GWidth = Defaults.GridWidth;
     static int m_GHeight = Defaults.GridHeight;
-    static Vector3 GridStartPos;
+    static Vector3 GridStartPos = new Vector3(Defaults.GridStartX, 0, Defaults.GridStartZ);
     #region Singleton
     static Grid m_Instance;
     public static Grid Instance
@@ -84,7 +84,7 @@ public class Grid:MonoBehaviour
     }
     public static Vector3 GridToWorld(int x, int y)
     {
-        return GridStartPos + new Vector3(x, y, 0) * Defaults.GridSquareSize;
+        return GridStartPos + new Vector3(x, 0, y) * Defaults.GridSquareSize;
     }
     public static bool IsInBounds(int x, int y)
     {
@@ -97,7 +97,7 @@ public class Grid:MonoBehaviour
     public static Vector3 SnapToGrid(Vector3 input)
     {
         input.x -= input.x % Defaults.GridSquareSize;
-        input.y -= input.y % Defaults.GridSquareSize;
+        input.z -= input.z % Defaults.GridSquareSize;
         return input;
     }
 

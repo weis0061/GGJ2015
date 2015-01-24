@@ -2,9 +2,13 @@
 using System.Collections;
 
 [RequireComponent(typeof(GridObject))]
-public class SnapToGridOnStart : MonoBehaviour
+public class SnapToGrid : MonoBehaviour
 {
     void Start()
+    {
+        Snap();
+    }
+    public void Snap()
     {
         GetComponent<GridObject>().SnapToGrid();
     }
