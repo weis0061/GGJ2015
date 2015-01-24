@@ -19,7 +19,7 @@ public class Grid:MonoBehaviour
         {
             if (m_Instance == null)
             {
-                m_Instance = ((GameObject)GameObject.Instantiate(new GameObject())).AddComponent<Grid>();
+                m_Instance = new GameObject().AddComponent<Grid>();
                 m_Instance.Initialize();
             }
             return m_Instance;

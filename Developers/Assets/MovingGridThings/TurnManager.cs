@@ -14,7 +14,7 @@ public class TurnManager : MonoBehaviour
         {
             if (m_Instance == null)
             {
-                m_Instance = ((GameObject)GameObject.Instantiate(new GameObject())).AddComponent<TurnManager>();
+                m_Instance = new GameObject().AddComponent<TurnManager>();
                 m_Instance.Start();
             }
             return m_Instance;
