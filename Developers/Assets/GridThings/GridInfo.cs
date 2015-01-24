@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class GridInfo : MonoBehaviour
+public class GridInfo //: MonoBehaviour
 {
 
 
@@ -10,12 +10,17 @@ public class GridInfo : MonoBehaviour
     public int GridYPos;
     
 
-    public List<GridObject> ObjectList;
-
-    void Start()
+    public List<GridObject> ObjectList
     {
-        ObjectList = new List<GridObject>();
+        get
+        {
+            if (m_ObjectList == null)
+                m_ObjectList = new List<GridObject>();
+            return m_ObjectList;
+        }
     }
+
+    List<GridObject> m_ObjectList;
     
 
 }

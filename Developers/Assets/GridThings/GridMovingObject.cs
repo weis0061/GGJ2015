@@ -23,8 +23,8 @@ public class GridMovingObject : MonoBehaviour
     void Start()
     {
         GridObject = GetComponent<GridObject>();
-        GridInfo = Grid.Instance.GetGridInfo(Grid.Instance.WorldToGridX(transform.position.x),
-                                           Grid.Instance.WorldToGridY(transform.position.y));
+        GridInfo = Grid.Instance.GetGridInfo(Grid.WorldToGridX(transform.position.x),
+                                           Grid.WorldToGridY(transform.position.y));
     }
     public void MoveForward()
     {
@@ -83,23 +83,26 @@ public class GridMovingObject : MonoBehaviour
         get
         {
             GridInfo ginfo;
+            int gposX = GridInfo.GridXPos;
+            int gposY = GridInfo.GridYPos;
             if (FaceDirection == Direction.down)
             {
-                ginfo = Grid.Instance.GetGridInfo((int)GridObject.GridPos.x, (int)GridObject.GridPos.y + 1);
+                gposY++;
             } else if (FaceDirection == Direction.up)
             {
-                ginfo = Grid.Instance.GetGridInfo((int)GridObject.GridPos.x, (int)GridObject.GridPos.y - 1);
+                gposY--;
             } else if (FaceDirection == Direction.right)
             {
-                ginfo = Grid.Instance.GetGridInfo((int)GridObject.GridPos.x + 1, (int)GridObject.GridPos.y);
+                gposX++;
             } else
             {
-                ginfo = Grid.Instance.GetGridInfo((int)GridObject.GridPos.x - 1, (int)GridObject.GridPos.y);
+                gposX--;
             } 
-            if (ginfo == null)
+            if (Grid.IsInBounds(gposX, gposY))
             {
-                ginfo = GridObject.GridInfo;
-            }
+                ginfo = Grid.Instance.GetGridInfo(gposX, gposY);
+            } else
+                ginfo = GridInfo;
             return ginfo;
         }
     }
@@ -108,7 +111,7 @@ public class GridMovingObject : MonoBehaviour
     {
         if (TurnManager.State == TurnState.Showing)
         {
-            StepTo(GridTarget.transform.position, VisualMoveSpeed);
+            StepTo(Grid.GridToWorld(XTarget, YTarget), VisualMoveSpeed);
         } else if (TurnManager.State == TurnState.Idle)
         {
             FinishedMoving = false;

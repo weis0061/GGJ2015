@@ -20,6 +20,7 @@ public class Grid:MonoBehaviour
             if (m_Instance == null)
             {
                 m_Instance = ((GameObject)GameObject.Instantiate(new GameObject())).AddComponent<Grid>();
+                m_Instance.Initialize();
             }
             return m_Instance;
         }
@@ -28,24 +29,23 @@ public class Grid:MonoBehaviour
 
     public void Initialize()
     {
-        Debug.Log("Init");
-        m_Grid = new List<List<GridInfo>>(GridWidth);
+        m_Grid = new List<List<GridInfo>>();
         for (int i=0; i<GridWidth; i++)
         {
-            m_Grid [i] = new List<GridInfo>(GridHeight);
+            m_Grid.Add(new List<GridInfo>());
             for (int j=0; j<GridHeight; j++)
             {
+                m_Grid [i].Add(new GridInfo());
                 m_Grid [i] [j].GridXPos = i;
                 m_Grid [i] [j].GridYPos = j;
-                m_Grid [i] [j].transform.position = GridStartPos + new Vector3(i, j, 0) * Defaults.GridSquareSize;
-                Debug.Log(m_Grid [i] [j]);
+                //m_Grid [i] [j].transform.position = GridStartPos + new Vector3(i, j, 0) * Defaults.GridSquareSize;
             }
         }
     }
 
     public void Start()
     {
-        Instance.Initialize();
+        //Instance.Initialize();
     }
     public int GridWidth
     {
@@ -70,22 +70,28 @@ public class Grid:MonoBehaviour
             Debug.LogError("ERROR: getting grid position X: " + x + " Y: " + y + " is out of bounds");
             return null;
         }
-        Debug.Log("Getting grid info of X: " + x + " Y: " + y);
         GridInfo ginfo = m_Grid [x] [y];
         return ginfo;
     }
     
-    public int WorldToGridX(float x)
+    public static int WorldToGridX(float x)
     {
         return (int)((x - GridStartPos.x) / Defaults.GridSquareSize);
     }
-    public int WorldToGridY(float y)
+    public static int WorldToGridY(float y)
     {
         return (int)((y - GridStartPos.y) / Defaults.GridSquareSize);
     }
-    public bool IsInBounds(int x, int y)
+    public static Vector3 GridToWorld(int x, int y)
     {
-        return false;
+        return GridStartPos + new Vector3(x, y, 0) * Defaults.GridSquareSize;
+    }
+    public static bool IsInBounds(int x, int y)
+    {
+        if (x < Instance.GridWidth && x > 0 && y < Instance.GridHeight && y > 0)
+            return true;
+        else
+            return false;
     }
 
 }
