@@ -8,6 +8,7 @@ public class PlayerInput : MonoBehaviour
     public bool MoveRight;
     public bool MoveForward;
     public bool MoveBack;
+    public bool DropFlare;
 
     public float Deadzone;
 
@@ -32,6 +33,11 @@ public class PlayerInput : MonoBehaviour
             {
                 MoveBack = true;
             }
+            if(Input.GetButton("Drop Flare"))
+            {
+                DropFlare = true;
+            }
+
 
 
         }
@@ -43,6 +49,7 @@ public class PlayerInput : MonoBehaviour
         MoveRight = false;
         MoveLeft = false;
         MoveForward = false;
+        DropFlare = false;;
     }
 
     void Start()

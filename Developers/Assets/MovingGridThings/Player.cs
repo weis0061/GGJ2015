@@ -46,6 +46,10 @@ public class Player : MonoBehaviour
                     
                 }
 #endif
+                if(pi.DropFlare)
+                {
+
+                }
             }
         }
     }
