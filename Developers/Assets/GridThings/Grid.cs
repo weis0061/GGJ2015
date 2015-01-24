@@ -71,6 +71,7 @@ public class Grid:MonoBehaviour
             return null;
         }
         GridInfo ginfo = m_Grid [x] [y];
+        Debug.Log("Grid lookup pos:" + x + " " + y);
         return ginfo;
     }
     
@@ -88,6 +89,7 @@ public class Grid:MonoBehaviour
     }
     public static bool IsInBounds(int x, int y)
     {
+        Debug.Log("Checking bounds: " + x + " " + y);
         if (x < Instance.GridWidth && x > 0 && y < Instance.GridHeight && y > 0)
             return true;
         else

@@ -18,6 +18,7 @@ public class GridMovingObject : MonoBehaviour
     {
         XTarget = x;
         YTarget = y;
+        Debug.Log("asdf" + y);
         GridTarget = Grid.Instance.GetGridInfo(x, y);
     }
     void Start()
@@ -90,6 +91,8 @@ public class GridMovingObject : MonoBehaviour
             GridInfo ginfo;
             int gposX = GridInfo.GridXPos;
             int gposY = GridInfo.GridYPos;
+            Debug.Log("Forwardmovepos: " + gposY);
+            Debug.Log(FaceDirection);
             if (FaceDirection == Direction.down)
             {
                 gposY++;
@@ -99,12 +102,17 @@ public class GridMovingObject : MonoBehaviour
             } else if (FaceDirection == Direction.right)
             {
                 gposX++;
-            } else
+            } else //facing left
             {
+                Debug.Log("Facing left");
+                Debug.Log("BEFORE GRID POSITION: " + gposX);
                 gposX--;
+                Debug.Log("AFTER GRID POSITION: " + gposX);
+
             } 
             if (Grid.IsInBounds(gposX, gposY))
             {
+                Debug.Log("In bounds");
                 ginfo = Grid.Instance.GetGridInfo(gposX, gposY);
             } else
                 ginfo = GridInfo;
