@@ -35,10 +35,19 @@ public class Grid:MonoBehaviour
             m_Grid.Add(new List<GridInfo>());
             for (int j=0; j<GridHeight; j++)
             {
-                m_Grid [i].Add(new GridInfo());
-                m_Grid [i] [j].GridXPos = i;
-                m_Grid [i] [j].GridYPos = j;
+                GridInfo GridToAdd=new GridInfo();
+                GridToAdd.GridXPos=i;
+                GridToAdd.GridYPos=j;
+                m_Grid [i].Add(GridToAdd);
+                if(m_Grid[i][j]==GridToAdd){
+                    Debug.Log("Grid is the right one");
+                }
+                //m_Grid [i] [j].GridXPos = i;
+                //m_Grid [i] [j].GridYPos = j;
                 //m_Grid [i] [j].transform.position = GridStartPos + new Vector3(i, j, 0) * Defaults.GridSquareSize;
+                if(false){
+
+                }
             }
         }
     }
@@ -71,7 +80,6 @@ public class Grid:MonoBehaviour
             return null;
         }
         GridInfo ginfo = m_Grid [x] [y];
-        Debug.Log("Grid lookup pos:" + x + " " + y);
         return ginfo;
     }
     
@@ -79,7 +87,7 @@ public class Grid:MonoBehaviour
     {
         return (int)((x - GridStartPos.x) / Defaults.GridSquareSize);
     }
-    public static int WorldToGridY(float y)
+    public static int WorldToGridZ(float y)
     {
         return (int)((y - GridStartPos.y) / Defaults.GridSquareSize);
     }
@@ -89,8 +97,7 @@ public class Grid:MonoBehaviour
     }
     public static bool IsInBounds(int x, int y)
     {
-        Debug.Log("Checking bounds: " + x + " " + y);
-        if (x < Instance.GridWidth && x > 0 && y < Instance.GridHeight && y > 0)
+        if (x < Instance.GridWidth && x >= 0 && y < Instance.GridHeight && y >= 0)
             return true;
         else
             return false;

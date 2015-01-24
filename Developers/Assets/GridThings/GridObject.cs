@@ -29,7 +29,7 @@ public class GridObject : MonoBehaviour
     void Start()
     {
         GridInfo = Grid.Instance.GetGridInfo(Grid.WorldToGridX(transform.position.x),
-                                           Grid.WorldToGridY(transform.position.y));
+                                           Grid.WorldToGridZ(transform.position.z));
         GridPos = Grid.SnapToGrid(transform.position);
     }
 

@@ -8,6 +8,9 @@ public class GridInfo //: MonoBehaviour
 
     public int GridXPos;
     public int GridYPos;
+    public GridInfo(){
+
+    }
     
 
     public List<GridObject> ObjectList

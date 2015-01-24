@@ -18,21 +18,19 @@ public class GridMovingObject : MonoBehaviour
     {
         XTarget = x;
         YTarget = y;
-        Debug.Log("asdf" + y);
         GridTarget = Grid.Instance.GetGridInfo(x, y);
     }
     void Start()
     {
         GridObject = GetComponent<GridObject>();
         GridInfo = Grid.Instance.GetGridInfo(Grid.WorldToGridX(transform.position.x),
-                                           Grid.WorldToGridY(transform.position.y));
+                                           Grid.WorldToGridZ(transform.position.z));
     }
     public void MoveForward()
     {
         if (CanMoveForward)
         {
             SetMoveTarget(ForwardMovePos.GridXPos, ForwardMovePos.GridYPos);
-            Debug.Log(ForwardMovePos.GridXPos);
         }
     }
     void DetermineDirection()
@@ -79,7 +77,6 @@ public class GridMovingObject : MonoBehaviour
             {
                 return false;
             }
-            Debug.Log("Can move forward");
             return true;
         }
 
@@ -91,8 +88,6 @@ public class GridMovingObject : MonoBehaviour
             GridInfo ginfo;
             int gposX = GridInfo.GridXPos;
             int gposY = GridInfo.GridYPos;
-            Debug.Log("Forwardmovepos: " + gposY);
-            Debug.Log(FaceDirection);
             if (FaceDirection == Direction.down)
             {
                 gposY++;
@@ -104,19 +99,14 @@ public class GridMovingObject : MonoBehaviour
                 gposX++;
             } else //facing left
             {
-                Debug.Log("Facing left");
-                Debug.Log("BEFORE GRID POSITION: " + gposX);
                 gposX--;
-                Debug.Log("AFTER GRID POSITION: " + gposX);
 
             } 
             if (Grid.IsInBounds(gposX, gposY))
             {
-                Debug.Log("In bounds");
                 ginfo = Grid.Instance.GetGridInfo(gposX, gposY);
             } else
                 ginfo = GridInfo;
-            Debug.Log("Object: " + this.gameObject + " Grid pos x: " + gposX + " y: " + gposY);
             return ginfo;
         }
     }
@@ -134,7 +124,6 @@ public class GridMovingObject : MonoBehaviour
 
     public void StepTo(Vector3 position, float SpeedDivider)
     {
-        Debug.Log("Moving to: " + position);
         transform.position = position;// += (position - transform.position) / SpeedDivider;
         FinishedMoving = true;
     }
