@@ -37,6 +37,7 @@ public class Player : MonoBehaviour
             {
                 if (pi.MoveForward)
                 {
+                    Debug.Log("Player: Input received, start move");
                     StartMove();
                     GridMovingObject.MoveForward();
                 } 

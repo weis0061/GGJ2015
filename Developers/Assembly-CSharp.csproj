@@ -53,6 +53,7 @@
      <Compile Include="Assets\GridThings\GridMovingObject.cs" />
      <Compile Include="Assets\GridThings\GridObject.cs" />
      <Compile Include="Assets\GridThings\GridPather.cs" />
+     <Compile Include="Assets\GridThings\SnapToGridOnStart.cs" />
      <Compile Include="Assets\MovingGridThings\Monster.cs" />
      <Compile Include="Assets\MovingGridThings\MonsterAI.cs" />
      <Compile Include="Assets\MovingGridThings\Player.cs" />

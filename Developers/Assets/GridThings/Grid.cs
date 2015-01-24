@@ -94,4 +94,11 @@ public class Grid:MonoBehaviour
             return false;
     }
 
+    public static Vector3 SnapToGrid(Vector3 input)
+    {
+        input.x -= input.x % Defaults.GridSquareSize;
+        input.y -= input.y % Defaults.GridSquareSize;
+        return input;
+    }
+
 }

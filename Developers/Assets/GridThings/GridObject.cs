@@ -15,7 +15,12 @@ public class GridObject : MonoBehaviour
 
     void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(Vector3.zero, 1f);
+        Gizmos.DrawWireSphere(transform.position, 1f);
+    }
+
+    public void SnapToGrid()
+    {
+        transform.position = Grid.SnapToGrid(transform.position);
     }
 
 }
