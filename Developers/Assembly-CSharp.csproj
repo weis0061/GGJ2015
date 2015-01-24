@@ -61,6 +61,7 @@
      <Compile Include="Assets\MovingGridThings\Player.cs" />
      <Compile Include="Assets\MovingGridThings\PlayerInput.cs" />
      <Compile Include="Assets\MovingGridThings\TurnManager.cs" />
+     <Compile Include="Assets\ObstacleBlock.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

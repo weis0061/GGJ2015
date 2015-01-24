@@ -4,8 +4,8 @@ using System.Collections;
 [RequireComponent(typeof(GridObject))]
 public class GridMovingObject : MonoBehaviour
 {
-    public int XTarget;
-    public int YTarget;
+    int XTarget;
+    int YTarget;
     [HideInInspector]
     public bool
         FinishedMoving;
@@ -28,7 +28,11 @@ public class GridMovingObject : MonoBehaviour
     }
     public void MoveForward()
     {
-        SetMoveTarget(ForwardMovePos.GridXPos, ForwardMovePos.GridYPos);
+        if (CanMoveForward)
+        {
+            SetMoveTarget(ForwardMovePos.GridXPos, ForwardMovePos.GridYPos);
+            Debug.Log(ForwardMovePos.GridXPos);
+        }
     }
     void DetermineDirection()
     {
@@ -72,8 +76,9 @@ public class GridMovingObject : MonoBehaviour
             //TODO: check if there is a wall or obstacle in the way
             else if (false)
             {
-
+                return false;
             }
+            Debug.Log("Can move forward");
             return true;
         }
 
@@ -103,6 +108,7 @@ public class GridMovingObject : MonoBehaviour
                 ginfo = Grid.Instance.GetGridInfo(gposX, gposY);
             } else
                 ginfo = GridInfo;
+            Debug.Log("Object: " + this.gameObject + " Grid pos x: " + gposX + " y: " + gposY);
             return ginfo;
         }
     }
@@ -120,6 +126,8 @@ public class GridMovingObject : MonoBehaviour
 
     public void StepTo(Vector3 position, float SpeedDivider)
     {
-        transform.position += (position - transform.position) / SpeedDivider;
+        Debug.Log("Moving to: " + position);
+        transform.position = position;// += (position - transform.position) / SpeedDivider;
+        FinishedMoving = true;
     }
 }

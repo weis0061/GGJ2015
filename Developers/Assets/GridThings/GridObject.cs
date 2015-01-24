@@ -30,12 +30,12 @@ public class GridObject : MonoBehaviour
     {
         GridInfo = Grid.Instance.GetGridInfo(Grid.WorldToGridX(transform.position.x),
                                            Grid.WorldToGridY(transform.position.y));
-
+        GridPos = Grid.SnapToGrid(transform.position);
     }
 
     void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, 1f);
+        Gizmos.DrawWireSphere(transform.position, 0.1f);
     }
 
     public void SnapToGrid()

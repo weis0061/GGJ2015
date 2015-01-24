@@ -51,6 +51,7 @@ public class TurnManager : MonoBehaviour
         }
         State = TurnState.Idle;
 
+
     }
 
 

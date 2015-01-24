@@ -2,11 +2,15 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GridThings\GridObject.cs">
     <Files>
-      <File FileName="Assets\GridThings\GridMovingObject.cs" Line="122" Column="6" />
-      <File FileName="Assets\MovingGridThings\Player.cs" Line="1" Column="1" />
-      <File FileName="Assets\GridThings\GridObject.cs" Line="17" Column="6" />
-      <File FileName="Assets\GridThings\Grid.cs" Line="99" Column="48" />
-      <File FileName="Assets\Dev\DrawGrid.cs" Line="13" Column="53" />
+      <File FileName="Assets\Dev\DrawGrid.cs" Line="20" Column="10" />
+      <File FileName="Assets\GridThings\GridMovingObject.cs" Line="111" Column="56" />
+      <File FileName="Assets\MovingGridThings\Player.cs" Line="41" Column="33" />
+      <File FileName="Assets\GridThings\SnapToGrid.cs" Line="1" Column="1" />
+      <File FileName="Assets\Defaults.cs" Line="7" Column="37" />
+      <File FileName="Assets\GridThings\Grid.cs" Line="1" Column="1" />
+      <File FileName="Assets\GridThings\GridObject.cs" Line="38" Column="53" />
+      <File FileName="Assets\MovingGridThings\TurnManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\ObstacleBlock.cs" Line="10" Column="48" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

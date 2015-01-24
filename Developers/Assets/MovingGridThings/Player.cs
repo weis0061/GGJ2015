@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     {
         if (Moving)
         {
-            GridMovingObject.StepTo(Destination, MovementSpeedValue);
+            //GridMovingObject.StepTo(Destination, MovementSpeedValue);
         } else
         {
             if (TurnManager.State == TurnState.Idle)
