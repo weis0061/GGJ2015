@@ -13,6 +13,7 @@ public class GridMovingObject : MonoBehaviour
     Direction FaceDirection;
     GridObject GridObject;
     GridInfo GridTarget;
+    GridInfo GridInfo;
     public void SetMoveTarget(int x, int y)
     {
         XTarget = x;
@@ -22,6 +23,8 @@ public class GridMovingObject : MonoBehaviour
     void Start()
     {
         GridObject = GetComponent<GridObject>();
+        GridInfo = Grid.Instance.GetGridInfo(Grid.Instance.WorldToGridX(transform.position.x),
+                                           Grid.Instance.WorldToGridY(transform.position.y));
     }
     public void MoveForward()
     {

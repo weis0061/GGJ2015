@@ -28,6 +28,7 @@ public class Grid:MonoBehaviour
 
     public void Initialize()
     {
+        Debug.Log("Init");
         m_Grid = new List<List<GridInfo>>(GridWidth);
         for (int i=0; i<GridWidth; i++)
         {
@@ -69,19 +70,22 @@ public class Grid:MonoBehaviour
             Debug.LogError("ERROR: getting grid position X: " + x + " Y: " + y + " is out of bounds");
             return null;
         }
-        return m_Grid [x] [y];
+        Debug.Log("Getting grid info of X: " + x + " Y: " + y);
+        GridInfo ginfo = m_Grid [x] [y];
+        return ginfo;
     }
     
     public int WorldToGridX(float x)
     {
         return (int)((x - GridStartPos.x) / Defaults.GridSquareSize);
-    }`
+    }
     public int WorldToGridY(float y)
     {
         return (int)((y - GridStartPos.y) / Defaults.GridSquareSize);
     }
-    public bool IsInBounds(int x, int y){
-
+    public bool IsInBounds(int x, int y)
+    {
+        return false;
     }
 
 }

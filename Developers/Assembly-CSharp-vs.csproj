@@ -48,16 +48,16 @@
   <ItemGroup>
      <Compile Include="Assets\Defaults.cs" />
      <Compile Include="Assets\Enums.cs" />
-     <Compile Include="Assets\Grid.cs" />
-     <Compile Include="Assets\GridInfo.cs" />
-     <Compile Include="Assets\GridMovingObject.cs" />
-     <Compile Include="Assets\GridObject.cs" />
-     <Compile Include="Assets\GridPather.cs" />
-     <Compile Include="Assets\Monster.cs" />
-     <Compile Include="Assets\MonsterAI.cs" />
-     <Compile Include="Assets\Player.cs" />
-     <Compile Include="Assets\PlayerInput.cs" />
-     <Compile Include="Assets\TurnManager.cs" />
+     <Compile Include="Assets\GridThings\Grid.cs" />
+     <Compile Include="Assets\GridThings\GridInfo.cs" />
+     <Compile Include="Assets\GridThings\GridMovingObject.cs" />
+     <Compile Include="Assets\GridThings\GridObject.cs" />
+     <Compile Include="Assets\GridThings\GridPather.cs" />
+     <Compile Include="Assets\MovingGridThings\Monster.cs" />
+     <Compile Include="Assets\MovingGridThings\MonsterAI.cs" />
+     <Compile Include="Assets\MovingGridThings\Player.cs" />
+     <Compile Include="Assets\MovingGridThings\PlayerInput.cs" />
+     <Compile Include="Assets\MovingGridThings\TurnManager.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
