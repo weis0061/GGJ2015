@@ -23,8 +23,10 @@ public class CameraAim : MonoBehaviour
         YRot += Input.GetAxis("Mouse Y");
         XRot = Mathf.Clamp(XRot, -20, 20);
         YRot = Mathf.Clamp(YRot, -20, 20);
+        
+        CameraXRot.transform.localEulerAngles = Vector3.Slerp(CameraXRot.transform.localEulerAngles, new Vector3(0, XRot, 0));
+        CameraYRot.transform.localEulerAngles = Vector3.Slerp(CameraXRot.transform.localEulerAngles, new Vector3(YRot, 0, 0));
 
-        CameraXRot.transform.localEulerAngles = new Vector3(YRot, XRot, 0);
 
     }
 }

@@ -121,7 +121,7 @@ public class GridMovingObject : MonoBehaviour
         UpdateRotation();
         if (TurnManager.State == TurnState.Showing)
         {
-            StepTo(Grid.GridToWorld(XTarget, YTarget), AestheticMoveSpeedDivider);
+            StepTo(Grid.GridToWorld(XTarget, YTarget) + new Vector3(0, transform.position.y, 0), AestheticMoveSpeedDivider);
         } else if (TurnManager.State == TurnState.Idle)
         {
             FinishedMoving = false;
@@ -163,7 +163,9 @@ public class GridMovingObject : MonoBehaviour
     {
         Quaternion targetRotation = new Quaternion(0, (int)FaceDirection * 90, 0, 0);
 
-        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime);
+        Vector3 TargetVector = new Vector3(0, (int)FaceDirection * 90, 0);
+
+        transform.localEulerAngles = Vector3.Slerp(transform.localEulerAngles, TargetVector, Time.deltaTime * Defaults.CharacterRotateSlerp);
     }
 
 

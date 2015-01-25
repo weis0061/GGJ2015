@@ -10,6 +10,8 @@ public static class Defaults
     public const float GridSquareSize = 3.0f;
     public const float GridStartX = -33f;//make this a multiple of the GridSquareSize
     public const float GridStartZ = -90f;//make this a multiple of the GridSquareSize
-    public const float MovingObjectLerpSnapDistance=0.05f;
+    public const float MovingObjectLerpSnapDistance = 0.05f;
+    public const float CharacterRotateSlerp = 3.0f;
+    public const float MouseRotateSlerp = 3.0f;
 
 }
