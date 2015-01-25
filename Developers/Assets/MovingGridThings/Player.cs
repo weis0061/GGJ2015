@@ -6,6 +6,7 @@ using System.Collections;
 
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(GridMovingObject))]
+[RequireComponent(typeof(FlareDrop))]
 [AddComponentMenu("Entities/Player")]
 public class Player : MonoBehaviour
 {
