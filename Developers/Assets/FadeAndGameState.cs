@@ -34,7 +34,7 @@ public class FadeAndGameState : MonoBehaviour
 
     static Color currentCol;
 
-    static float FadeTime = Defaults.GameStateFadeTime;
+    public float FadeTime = Defaults.GameStateFadeTime;
     static float m_fadeTime;
     static GameState gs;
     
@@ -57,34 +57,32 @@ public class FadeAndGameState : MonoBehaviour
 
     void Update()
     {
-        if (FadeTime > 0.0f)
+        if (gs != GameState.Playing)
         {
-            m_fadeTime += Time.deltaTime / FadeTime;
-            if (gs == GameState.Lose)
+            if (FadeTime > 0.0f)
             {
-                currentCol = Color.Lerp(black_Transparent, black, m_fadeTime);
-            } else if (gs == GameState.Win)
-            {
-                currentCol = Color.Lerp(white_Transparent, white, m_fadeTime);
+                m_fadeTime += Time.deltaTime / FadeTime;
+                if (gs == GameState.Lose)
+                {
+                    currentCol = Color.Lerp(black_Transparent, black, m_fadeTime);
+                    if (m_fadeTime >= 1.0f)
+                    {
+                        Application.LoadLevel(Application.loadedLevelName);
+                    }
+                } else if (gs == GameState.Win)
+                {
+                    currentCol = Color.Lerp(white_Transparent, white, m_fadeTime);
+                    if (m_fadeTime >= 1.0f)
+                    {
+                        Application.LoadLevel("victory");
+                    }
+                } else
+                {
+                    currentCol = black_Transparent;
+                }
             } else
-            {
-                currentCol = black_Transparent;
-            }
-            if (m_fadeTime >= 1.0f)
             {
                 Application.LoadLevel(Application.loadedLevelName);
-            }
-        } else
-        {
-            if (gs == GameState.Lose)
-            {
-                currentCol = black;
-            } else if (gs == GameState.Win)
-            {
-                currentCol = white;
-            } else
-            {
-                currentCol = black_Transparent;
             }
         }
     }

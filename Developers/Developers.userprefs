@@ -1,13 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MovingGridThings\TurnManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\FadeAndGameState.cs">
     <Files>
-      <File FileName="Assets\FadeAndGameState.cs" Line="21" Column="15" />
-      <File FileName="Assets\MovingGridThings\Player.cs" Line="89" Column="45" />
-      <File FileName="Assets\GridThings\Grid.cs" Line="23" Column="1" />
-      <File FileName="Assets\MovingGridThings\Monster.cs" Line="32" Column="46" />
-      <File FileName="Assets\Defaults.cs" Line="19" Column="49" />
-      <File FileName="Assets\MovingGridThings\TurnManager.cs" Line="30" Column="11" />
+      <File FileName="Assets\GridThings\GridObject.cs" Line="8" Column="7" />
+      <File FileName="Assets\FadeAndGameState.cs" Line="70" Column="76" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
