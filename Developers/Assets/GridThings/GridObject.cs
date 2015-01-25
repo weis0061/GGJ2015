@@ -17,12 +17,20 @@ public class GridObject : MonoBehaviour
         {
             if (m_GInfo != null)
             {
+                if (m_GInfo.ObjectList.Contains(this))
+                {
+                    m_GInfo.ObjectList.Remove(this);
+                }
+            }
+            m_GInfo = value;
+            
+            if (m_GInfo != null)
+            {
                 if (!m_GInfo.ObjectList.Contains(this))
                 {
                     m_GInfo.ObjectList.Add(this);
                 }
             }
-            m_GInfo = value;
         }
     }
 
