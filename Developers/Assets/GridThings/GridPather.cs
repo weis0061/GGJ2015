@@ -30,11 +30,11 @@ public class GridPather : MonoBehaviour
         TileCheckQueue = new List<GridInfo>();
 
         GridInfo gInfo = GetComponent<GridObject>().GridInfo;
-        /*
+
         RecursivelyCheckAdjacentTiles(0, Grid.Instance.GetGridInfo(gInfo.GridXPos + 1, gInfo.GridYPos), Direction.right);
         RecursivelyCheckAdjacentTiles(0, Grid.Instance.GetGridInfo(gInfo.GridXPos, gInfo.GridYPos + 1), Direction.down);
         RecursivelyCheckAdjacentTiles(0, Grid.Instance.GetGridInfo(gInfo.GridXPos - 1, gInfo.GridYPos), Direction.left);
-        RecursivelyCheckAdjacentTiles(0, Grid.Instance.GetGridInfo(gInfo.GridXPos, gInfo.GridYPos - 1), Direction.up);*/
+        RecursivelyCheckAdjacentTiles(0, Grid.Instance.GetGridInfo(gInfo.GridXPos, gInfo.GridYPos - 1), Direction.up);
 
         return Target.ShortestDirection;
     }
