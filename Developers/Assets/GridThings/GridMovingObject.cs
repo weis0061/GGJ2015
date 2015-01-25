@@ -154,7 +154,8 @@ public class GridMovingObject : MonoBehaviour
     }
     void UpdateRotation(){
         Quaternion targetRotation = new Quaternion(0, (int)FaceDirection * 90, 0,0);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime*5);
+        Debug.Log(targetRotation);
+        transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime);
     }
 
 

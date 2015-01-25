@@ -8,7 +8,15 @@ public class GridInfo //: MonoBehaviour
 
     public int GridXPos;
     public int GridYPos;
-    public GridInfo(){
+    
+    //to be used for pathing only
+    #region pathing
+    public int DistToPather;
+    public Direction ShortestDirection;
+    #endregion
+
+    public GridInfo()
+    {
 
     }
     
