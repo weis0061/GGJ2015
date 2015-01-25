@@ -34,7 +34,7 @@ public class PlayerInput : MonoBehaviour
             {
                 MoveBack = true;
             }
-            if(Input.GetButton("Drop Flare"))
+            if(Input.GetButtonDown("Drop Flare"))
             {
                 DropFlare = true;
             }
@@ -50,7 +50,6 @@ public class PlayerInput : MonoBehaviour
         MoveRight = false;
         MoveLeft = false;
         MoveForward = false;
-        DropFlare = false;;
     }
 
     void Start()

@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     GridInfo TargetPos;
     bool Moving;
     GridMovingObject GridMovingObject;
+    FlareDrop flare;
 
     public float MovementSpeedValue;
 
@@ -23,6 +24,8 @@ public class Player : MonoBehaviour
     {
         pi = GetComponent<PlayerInput>();
         GridMovingObject = GetComponent<GridMovingObject>();
+        flare = GetComponent<FlareDrop>();
+
     }
 	
     // Update is called once per frame
@@ -45,7 +48,9 @@ public class Player : MonoBehaviour
 #endif
                 if(pi.DropFlare)
                 {
-
+                    Debug.Log("Flare Droped");
+                    flare.DropFlare(transform.position);
+                    pi.DropFlare = false;
                 }
             }
         }

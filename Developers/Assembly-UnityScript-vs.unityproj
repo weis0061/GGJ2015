@@ -5,11 +5,11 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{0FB26F93-79A4-3D60-D481-73B902814F5B}</ProjectGuid>
+	<ProjectGuid>{25D5358B-8A08-1807-5AC6-93929EA04FA5}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-CSharp</AssemblyName>
+	<AssemblyName>Assembly-UnityScript</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
 	<BaseDirectory>Assets</BaseDirectory>
@@ -46,25 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Defaults.cs" />
-     <Compile Include="Assets\Dev\DrawGrid.cs" />
-     <Compile Include="Assets\Dev\GridMenu.cs" />
-     <Compile Include="Assets\Enums.cs" />
-     <Compile Include="Assets\Flare.cs" />
-     <Compile Include="Assets\FlareDrop.cs" />
-     <Compile Include="Assets\GridThings\Grid.cs" />
-     <Compile Include="Assets\GridThings\GridInfo.cs" />
-     <Compile Include="Assets\GridThings\GridMovingObject.cs" />
-     <Compile Include="Assets\GridThings\GridObject.cs" />
-     <Compile Include="Assets\GridThings\GridPather.cs" />
-     <Compile Include="Assets\GridThings\SnapToGrid.cs" />
-     <Compile Include="Assets\MovingGridThings\Monster.cs" />
-     <Compile Include="Assets\MovingGridThings\MonsterAI.cs" />
-     <Compile Include="Assets\MovingGridThings\Player.cs" />
-     <Compile Include="Assets\MovingGridThings\PlayerInput.cs" />
-     <Compile Include="Assets\MovingGridThings\TurnManager.cs" />
-     <Compile Include="Assets\ObstacleBlock.cs" />
-     <Compile Include="Assets\Programming\DBGDraw.cs" />
+     <Compile Include="Assets\Flare.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -74,6 +56,5 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ProjectExtensions xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><MonoDevelop><Properties><Policies><TextStylePolicy inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/x-csharp" /><CSharpFormattingPolicy IndentSwitchBody="True" AnonymousMethodBraceStyle="NextLine" PropertyBraceStyle="NextLine" PropertyGetBraceStyle="NextLine" PropertySetBraceStyle="NextLine" EventBraceStyle="NextLine" EventAddBraceStyle="NextLine" EventRemoveBraceStyle="NextLine" StatementBraceStyle="NextLine" ArrayInitializerBraceStyle="NextLine" BeforeMethodDeclarationParentheses="False" BeforeMethodCallParentheses="False" BeforeConstructorDeclarationParentheses="False" BeforeDelegateDeclarationParentheses="False" NewParentheses="False" inheritsSet="Mono" inheritsScope="text/x-csharp" scope="text/x-csharp" /><TextStylePolicy inheritsSet="VisualStudio" inheritsScope="text/plain" scope="text/plain" /></Policies></Properties></MonoDevelop></ProjectExtensions>
-
+  
 </Project>
