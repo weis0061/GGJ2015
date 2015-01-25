@@ -17,6 +17,7 @@ public class GridMovingObject : MonoBehaviour
     GridObject GridObject;
     GridInfo GridTarget;
     GridInfo GridInfo;
+    CharacterController CharacterController;
     public void SetMoveTarget(int x, int y)
     {
         XTarget = x;
@@ -30,6 +31,7 @@ public class GridMovingObject : MonoBehaviour
         GridObject = GetComponent<GridObject>();
         GridInfo = Grid.Instance.GetGridInfo(Grid.WorldToGridX(transform.position.x),
                                            Grid.WorldToGridZ(transform.position.z));
+        CharacterController = GetComponent<CharacterController>();
     }
     public void MoveForward()
     {
@@ -78,8 +80,11 @@ public class GridMovingObject : MonoBehaviour
             }
 
             //TODO: check if there is a wall or obstacle in the way
-            else if (ForwardMovePos.ObjectList.Exists(element => element.GetComponent<ObstacleBlock>() != null))
+            Debug.Log("Checking for obstacle to see if i can move forward");
+            Debug.Log("Gridspace:" + ForwardMovePos.ObjectList);
+            if (ForwardMovePos.ObjectList.Exists(element => element.GetComponent<ObstacleBlock>() != null))
             {
+                Debug.Log("Obstacle found");
                 return false;
             }
             return true;
@@ -116,7 +121,7 @@ public class GridMovingObject : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         UpdateRotation();
         if (TurnManager.State == TurnState.Showing)
@@ -130,12 +135,28 @@ public class GridMovingObject : MonoBehaviour
 
     public void StepTo(Vector3 position, float SpeedDivider)
     {
-        transform.position += (position - transform.position) / SpeedDivider;
-        if ((position - transform.position).magnitude < Defaults.MovingObjectLerpSnapDistance)
+        //transform.position += (position - transform.position) / SpeedDivider;
+
+        Vector3 TargetVec;
+
+        TargetVec = (position - transform.position).normalized;
+        TargetVec *= AestheticMoveSpeedDivider * Time.deltaTime;
+        TargetVec += Physics.gravity * Time.deltaTime;
+
+
+        CharacterController.Move(TargetVec);
+
+
+        if (new Vector3(position.x - transform.position.x, 0, position.z - transform.position.z).magnitude < Defaults.MovingObjectLerpSnapDistance)
         {
             transform.position = position;
             FinishedMoving = true;
         }
+        if (transform.position.y < Defaults.LowestYPointToFall)
+        {
+            transform.position = transform.position + new Vector3(0, Defaults.ResetYPointAfterFall, 0);
+        }
+
     }
 
     public void TurnLeft()
@@ -163,9 +184,11 @@ public class GridMovingObject : MonoBehaviour
     {
         Quaternion targetRotation = new Quaternion(0, (int)FaceDirection * 90, 0, 0);
 
-        Vector3 TargetVector = new Vector3(0, (int)FaceDirection * 90, 0);
+        //Vector3 TargetVector = new Vector3(0, (int)FaceDirection * 90, 0);
 
-        transform.localEulerAngles = Vector3.Slerp(transform.localEulerAngles, TargetVector, Time.deltaTime * Defaults.CharacterRotateSlerp);
+        //transform.localEulerAngles = Vector3.Slerp(transform.localEulerAngles, TargetVector, Time.deltaTime * Defaults.CharacterRotateSlerp);
+
+        transform.rotation = Quaternion.Slerp(transform.localRotation, targetRotation, Time.deltaTime);
     }
 
 
