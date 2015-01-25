@@ -9,7 +9,7 @@ using System.Collections;
 [AddComponentMenu("Entities/Player")]
 public class Player : MonoBehaviour
 {
-    PlayerInput pi;
+    PlayerInput PlayerInput;
     
     Vector3 Destination;
     GridInfo TargetPos;
@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        pi = GetComponent<PlayerInput>();
+        PlayerInput = GetComponent<PlayerInput>();
         GridMovingObject = GetComponent<GridMovingObject>();
         flare = GetComponent<FlareDrop>();
 
@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
         {
             if (TurnManager.State == TurnState.Idle)
             {
-                if (pi.MoveForward)
+                if (PlayerInput.MoveForward)
                 {
                     StartMove();
                     GridMovingObject.MoveForward();
@@ -45,12 +45,25 @@ public class Player : MonoBehaviour
                 {
                     
                 }
-#endif
-                if(pi.DropFlare)
+                #endif
+                if(PlayerInput.MoveLeft){
+                    GridMovingObject.TurnLeft();
+                }
+                else if(PlayerInput.MoveRight){
+                    GridMovingObject.TurnRight();
+                }
+                else if(PlayerInput.MoveBack){
+                    GridMovingObject.TurnBack();
+                }
+
+
+
+
+                if(PlayerInput.DropFlare)
                 {
                     Debug.Log("Flare Droped");
                     flare.DropFlare(transform.position);
-                    pi.DropFlare = false;
+                    PlayerInput.DropFlare = false;
                 }
             }
         }
@@ -58,7 +71,7 @@ public class Player : MonoBehaviour
 
     void StartMove()
     {
-        pi.ResetButtons();
+        PlayerInput.ResetButtons();
         Moving = true;
         TurnManager.DoTurn();
     }

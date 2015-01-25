@@ -8,7 +8,7 @@ public class GridMovingObject : MonoBehaviour
     public int YTarget;
     public bool
         FinishedMoving;
-    public float VisualMoveSpeed;
+    public float AestheticMoveSpeedDivider;
     Direction FaceDirection;
     GridObject GridObject;
     GridInfo GridTarget;
@@ -114,9 +114,10 @@ public class GridMovingObject : MonoBehaviour
 
     void Update()
     {
+        UpdateRotation();
         if (TurnManager.State == TurnState.Showing)
         {
-            StepTo(Grid.GridToWorld(XTarget, YTarget), VisualMoveSpeed);
+            StepTo(Grid.GridToWorld(XTarget, YTarget), AestheticMoveSpeedDivider);
         } else if (TurnManager.State == TurnState.Idle)
         {
             FinishedMoving = false;
@@ -125,26 +126,35 @@ public class GridMovingObject : MonoBehaviour
 
     public void StepTo(Vector3 position, float SpeedDivider)
     {
-        transform.position = position;// += (position - transform.position) / SpeedDivider;
-        FinishedMoving = true;
+        transform.position += (position - transform.position) / SpeedDivider;
+        if ((position - transform.position).magnitude < Defaults.MovingObjectLerpSnapDistance)
+        {
+            transform.position=position;
+            FinishedMoving = true;
+        }
     }
 
-    void TurnLeft(){
+    public void TurnLeft(){
         FaceDirection += 1;
         if (FaceDirection >(Direction) 3)
         {
             FaceDirection=(Direction)0;
         }
     }
-    void TurnRight(){
+    public void TurnRight(){
         FaceDirection -= 1;
         if (FaceDirection <(Direction) 0)
         {
             FaceDirection=(Direction)3;
         }
     }
+    public void TurnBack(){
+        TurnRight();
+        TurnRight();
+    }
     void UpdateRotation(){
-
+        Quaternion targetRotation = new Quaternion(0, (int)FaceDirection * 90, 0,0);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime*5);
     }
 
 
