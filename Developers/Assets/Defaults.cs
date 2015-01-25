@@ -16,5 +16,6 @@ public static class Defaults
     public const float LowestYPointToFall = -2.0f;
     public const float ResetYPointAfterFall = 1.0f;
     public const float Acceleration = 8.0f;
+    public const float GameStateFadeTime = 3.0f;
 
 }

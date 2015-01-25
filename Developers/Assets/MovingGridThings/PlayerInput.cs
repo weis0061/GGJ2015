@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-
+[RequireComponent(typeof(FadeAndGameState))]
 public class PlayerInput : MonoBehaviour
 {
     public bool MoveLeft;

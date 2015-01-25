@@ -66,6 +66,10 @@ public class Player : MonoBehaviour
                     flare.DropFlare(transform.position + transform.TransformDirection(new Vector3(-1, 0, 0)));
                     PlayerInput.DropFlare = false;
                 }
+                if (Moving)
+                {
+                    StopMove();
+                }
             }
         }
     }
@@ -80,6 +84,10 @@ public class Player : MonoBehaviour
     {
         Moving = false;
         
+        if (GridMovingObject.GridInfo.ObjectList.Exists(element => element.GetComponent<WinTile>() != null))
+        {
+            FadeAndGameState.Instance.Win();
+        }
     }
 
 

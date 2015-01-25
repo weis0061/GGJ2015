@@ -3,9 +3,9 @@ using System.Collections;
 
 public class GridObject : MonoBehaviour
 {
-
+    #if UNITY_EDITOR
     public Vector2 GridPos;
-
+#endif
     GridInfo m_GInfo;
     public GridInfo GridInfo
     {
@@ -38,7 +38,9 @@ public class GridObject : MonoBehaviour
     {
         GridInfo = Grid.Instance.GetGridInfo(Grid.WorldToGridX(transform.position.x),
                                            Grid.WorldToGridZ(transform.position.z));
-        GridPos = Grid.SnapToGrid(transform.position);
+#if UNITY_EDITOR
+        GridPos = new Vector2(GridInfo.GridXPos, GridInfo.GridYPos);
+#endif
     }
 
     void OnDrawGizmos()

@@ -27,7 +27,7 @@ public class TurnManager : MonoBehaviour
     public static void DoTurn()
     {
         //GridMovingObject[] movers = FindObjectsOfType<GridMovingObject>();
-        State = TurnState.Calculating;
+        //State = TurnState.Calculating;
 
         for (int i=0; i<Instance.movers.Length; i++)
         {
@@ -48,15 +48,17 @@ public class TurnManager : MonoBehaviour
     void Update()
     {
 
-
-        for (int i=0; i<movers.Length; i++)
+        if (State == TurnState.Showing)
         {
-            if (!movers [i].FinishedMoving)
+            for (int i=0; i<movers.Length; i++)
             {
-                return;
+                if (!movers [i].FinishedMoving)
+                {
+                    return;
+                }
             }
+            State = TurnState.Idle;
         }
-        State = TurnState.Idle;
 
 
     }

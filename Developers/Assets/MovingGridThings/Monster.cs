@@ -27,6 +27,10 @@ public class Monster : MonoBehaviour
     {
         MonsterAI.ChooseDirection();
         GridMovingObject.MoveForward();
+        if (GridMovingObject.GridInfo.ObjectList.Exists(element => element.GetComponent<Player>() != null))
+        {
+            FadeAndGameState.Instance.Lose();
+        }
     }
 
     void Update()

@@ -22,6 +22,8 @@ public class GridPather : MonoBehaviour
 
     public Direction BestPathDir(GridInfo Target)
     {
+
+        return (Direction)(int)Random.Range(0, 4);
         if (Target == null)
         {
             return Direction.down;

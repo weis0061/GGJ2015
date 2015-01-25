@@ -17,7 +17,9 @@ public class GridMovingObject : MonoBehaviour
     public Quaternion TestQuat;
     GridObject GridObject;
     GridInfo GridTarget;
-    GridInfo GridInfo;
+    [HideInInspector]
+    public GridInfo
+        GridInfo;
     CharacterController CharacterController;
     public float Velocity{ get; private set; }
     public void SetMoveTarget(int x, int y)
