@@ -18,8 +18,11 @@ public class Player : MonoBehaviour
     bool Moving;
     GridMovingObject GridMovingObject;
     FlareDrop flare;
+    PowerHud power;
+
 
     public float MovementSpeedValue;
+    public int lightPowerDecay = 1;
 
     // Use this for initialization
     void Start()
@@ -27,6 +30,7 @@ public class Player : MonoBehaviour
         PlayerInput = GetComponent<PlayerInput>();
         GridMovingObject = GetComponent<GridMovingObject>();
         flare = GetComponent<FlareDrop>();
+        power = GameObject.FindGameObjectWithTag("BatteryPower").GetComponent<PowerHud>();
 
     }
 	
@@ -82,6 +86,7 @@ public class Player : MonoBehaviour
         Moving = true;
         TurnManager.DoTurn();
         //TODO: put light decay code here
+            power.ReducePower(lightPowerDecay);
     }
     void StopMove()
     {
