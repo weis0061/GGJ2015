@@ -14,10 +14,12 @@ public class GridMovingObject : MonoBehaviour
         FinishedMoving;
     public float AestheticMoveSpeedDivider;
     public Direction FaceDirection;
+    public Quaternion TestQuat;
     GridObject GridObject;
     GridInfo GridTarget;
     GridInfo GridInfo;
     CharacterController CharacterController;
+    GameObject Blank;
     public void SetMoveTarget(int x, int y)
     {
         XTarget = x;
@@ -32,6 +34,8 @@ public class GridMovingObject : MonoBehaviour
         GridInfo = Grid.Instance.GetGridInfo(Grid.WorldToGridX(transform.position.x),
                                            Grid.WorldToGridZ(transform.position.z));
         CharacterController = GetComponent<CharacterController>();
+        Blank = (GameObject)GameObject.Instantiate(new GameObject());
+        Blank.transform.parent = transform;
     }
     public void MoveForward()
     {
@@ -80,11 +84,8 @@ public class GridMovingObject : MonoBehaviour
             }
 
             //TODO: check if there is a wall or obstacle in the way
-            Debug.Log("Checking for obstacle to see if i can move forward");
-            Debug.Log("Gridspace:" + ForwardMovePos.ObjectList);
             if (ForwardMovePos.ObjectList.Exists(element => element.GetComponent<ObstacleBlock>() != null))
             {
-                Debug.Log("Obstacle found");
                 return false;
             }
             return true;
@@ -182,13 +183,14 @@ public class GridMovingObject : MonoBehaviour
     }
     void UpdateRotation()
     {
-        Quaternion targetRotation = new Quaternion(0, (int)FaceDirection * 90, 0, 0);
+        Quaternion targetRotation = Quaternion.AngleAxis((int)FaceDirection * 90, Vector3.up);
+        Blank.transform.rotation = targetRotation;
 
-        //Vector3 TargetVector = new Vector3(0, (int)FaceDirection * 90, 0);
+        Vector3 TargetVector = new Vector3(0, (int)FaceDirection * 90, 0);
 
         //transform.localEulerAngles = Vector3.Slerp(transform.localEulerAngles, TargetVector, Time.deltaTime * Defaults.CharacterRotateSlerp);
 
-        transform.rotation = Quaternion.Slerp(transform.localRotation, targetRotation, Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * Defaults.CharacterRotateSlerp);
     }
 
 
