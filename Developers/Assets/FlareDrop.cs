@@ -3,8 +3,14 @@ using System.Collections;
 
 public class FlareDrop : MonoBehaviour {
     [SerializeField]
-    float m_TotalFlares = 6;
+    int m_TotalFlares = 6;
     public GameObject FlarePrefab;
+
+    public int GetAmountOfFlares
+    {
+        get{ return m_TotalFlares;}
+    }
+
 	// Use this for initialization
 	void Start () 
     {

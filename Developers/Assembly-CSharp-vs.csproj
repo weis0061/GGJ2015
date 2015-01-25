@@ -52,6 +52,7 @@
      <Compile Include="Assets\Enums.cs" />
      <Compile Include="Assets\Flare.cs" />
      <Compile Include="Assets\FlareDrop.cs" />
+     <Compile Include="Assets\FlareHud.cs" />
      <Compile Include="Assets\GridThings\Grid.cs" />
      <Compile Include="Assets\GridThings\GridInfo.cs" />
      <Compile Include="Assets\GridThings\GridMovingObject.cs" />
