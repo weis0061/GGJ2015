@@ -17,6 +17,7 @@ public class PlayerInput : MonoBehaviour
         //If we can take input for the player
         if (TurnManager.State == TurnState.Idle)
         {
+            ResetButtons();
             if (Input.GetButtonDown("Move Left"))
             {
                 MoveLeft = true;

@@ -39,15 +39,9 @@ public class Grid:MonoBehaviour
                 GridToAdd.GridXPos=i;
                 GridToAdd.GridYPos=j;
                 m_Grid [i].Add(GridToAdd);
-                if(m_Grid[i][j]==GridToAdd){
-                    Debug.Log("Grid is the right one");
-                }
                 //m_Grid [i] [j].GridXPos = i;
                 //m_Grid [i] [j].GridYPos = j;
                 //m_Grid [i] [j].transform.position = GridStartPos + new Vector3(i, j, 0) * Defaults.GridSquareSize;
-                if(false){
-
-                }
             }
         }
     }
@@ -89,7 +83,7 @@ public class Grid:MonoBehaviour
     }
     public static int WorldToGridZ(float y)
     {
-        return (int)((y - GridStartPos.y) / Defaults.GridSquareSize);
+        return (int)((y - GridStartPos.z) / Defaults.GridSquareSize);
     }
     public static Vector3 GridToWorld(int x, int y)
     {

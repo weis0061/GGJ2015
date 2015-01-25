@@ -4,9 +4,8 @@ using System.Collections;
 [RequireComponent(typeof(GridObject))]
 public class GridMovingObject : MonoBehaviour
 {
-    int XTarget;
-    int YTarget;
-    [HideInInspector]
+    public int XTarget;
+    public int YTarget;
     public bool
         FinishedMoving;
     public float VisualMoveSpeed;
@@ -18,7 +17,9 @@ public class GridMovingObject : MonoBehaviour
     {
         XTarget = x;
         YTarget = y;
+        GridInfo.ObjectList.Remove(GridObject);
         GridTarget = Grid.Instance.GetGridInfo(x, y);
+        GridInfo = GridTarget;
     }
     void Start()
     {
@@ -127,4 +128,27 @@ public class GridMovingObject : MonoBehaviour
         transform.position = position;// += (position - transform.position) / SpeedDivider;
         FinishedMoving = true;
     }
+
+    void TurnLeft(){
+        FaceDirection += 1;
+        if (FaceDirection >(Direction) 3)
+        {
+            FaceDirection=(Direction)0;
+        }
+    }
+    void TurnRight(){
+        FaceDirection -= 1;
+        if (FaceDirection <(Direction) 0)
+        {
+            FaceDirection=(Direction)3;
+        }
+    }
+    void UpdateRotation(){
+
+    }
+
+
+
+
+
 }

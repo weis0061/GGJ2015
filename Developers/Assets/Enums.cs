@@ -12,7 +12,7 @@ public enum Direction
 {
     left=0,
     up,
-    down,
-    right
+    right,
+    down
 }
 ;

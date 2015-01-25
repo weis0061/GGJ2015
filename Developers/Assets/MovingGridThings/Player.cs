@@ -28,10 +28,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Moving)
-        {
-            //GridMovingObject.StepTo(Destination, MovementSpeedValue);
-        } else
+
         {
             if (TurnManager.State == TurnState.Idle)
             {
@@ -54,10 +51,6 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void DoMove()
-    {
-
-    }
     void StartMove()
     {
         pi.ResetButtons();
@@ -67,6 +60,7 @@ public class Player : MonoBehaviour
     void StopMove()
     {
         Moving = false;
+        
     }
 
 
