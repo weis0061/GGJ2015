@@ -69,11 +69,11 @@ public class GridPather : MonoBehaviour
             {
                 Tile.DistToPather = StepNumber;
                 Tile.ShortestDirection = dir;
-                /*
+
                 RecursivelyCheckAdjacentTiles(StepNumber, Grid.Instance.GetGridInfo(Tile.GridXPos + 1, Tile.GridYPos), dir);
                 RecursivelyCheckAdjacentTiles(StepNumber, Grid.Instance.GetGridInfo(Tile.GridXPos, Tile.GridYPos + 1), dir);
                 RecursivelyCheckAdjacentTiles(StepNumber, Grid.Instance.GetGridInfo(Tile.GridXPos - 1, Tile.GridYPos), dir);
-                RecursivelyCheckAdjacentTiles(StepNumber, Grid.Instance.GetGridInfo(Tile.GridXPos, Tile.GridYPos - 1), dir);*/
+                RecursivelyCheckAdjacentTiles(StepNumber, Grid.Instance.GetGridInfo(Tile.GridXPos, Tile.GridYPos - 1), dir);
 
             }
         } else
@@ -83,9 +83,9 @@ public class GridPather : MonoBehaviour
             PassedTiles.Add(Tile);
 
             //if the tile has an obstacle on it
-            //if (Tile.ObjectList.Exists(element => element.GetComponent<ObstacleBlock>() != null))
+            if (Tile.ObjectList.Exists(element => element.GetComponent<ObstacleBlock>() != null))
             {
-                // return;
+                return;
             }
             Tile.DistToPather = StepNumber;
             Tile.ShortestDirection = dir;

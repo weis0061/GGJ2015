@@ -34,7 +34,7 @@ public class CameraAim : MonoBehaviour
         //CameraYRot.transform.localEulerAngles = Vector3.Slerp(CameraXRot.transform.localEulerAngles, new Vector3(YRot, 0, 0), Time.deltaTime);
 
         CameraXRot.transform.localEulerAngles = new Vector3(0, XRot, YRot);
-        CameraXRot.transform.position = transform.position + CameraOffsetPos + new Vector3(0, Mathf.Sin(Time.deltaTime * 8) * GridMovingObject.Velocity, 0);
+        CameraXRot.transform.position = transform.position + CameraOffsetPos;// + new Vector3(0, Mathf.Sin(Time.deltaTime * 8) * GridMovingObject.Velocity, 0);
 
 
 

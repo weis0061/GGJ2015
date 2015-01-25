@@ -1,6 +1,3 @@
-//#define DIR4_MOVEMENT
-
-
 using UnityEngine;
 using System.Collections;
 
@@ -50,12 +47,6 @@ public class Player : MonoBehaviour
                     }
 
                 } 
-#if DIR4_MOVEMENT
-                else if (pi.MoveBack)
-                {
-                    
-                }
-                #endif
                 if (PlayerInput.MoveLeft)
                 {
                     GridMovingObject.TurnLeft();
@@ -81,10 +72,8 @@ public class Player : MonoBehaviour
 
     void StartMove()
     {
-        PlayerInput.ResetButtons();
         Moving = true;
         TurnManager.DoTurn();
-        //TODO: put light decay code here
         power.ReducePower(lightPowerDecay);
     }
     void StopMove()

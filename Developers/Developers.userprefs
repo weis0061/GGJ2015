@@ -1,14 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\GridThings\GridMovingObject.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\MovingGridThings\Player.cs">
     <Files>
-      <File FileName="Assets\GridThings\GridMovingObject.cs" Line="1" Column="1" />
-      <File FileName="Assets\GridThings\GridMovingObject.cs" Line="1" Column="1" />
-      <File FileName="Assets\CameraAim.cs" Line="1" Column="1" />
-      <File FileName="Assets\FlareHud.cs" Line="1" Column="1" />
-      <File FileName="Assets\Flare.cs" Line="1" Column="1" />
-      <File FileName="Assets\FlareDrop.cs" Line="1" Column="1" />
-      <File FileName="Assets\MovingGridThings\Player.cs" Line="1" Column="1" />
+      <File FileName="Assets\MovingGridThings\Player.cs" Line="39" Column="6" />
+      <File FileName="Assets\MovingGridThings\MonsterAI.cs" Line="18" Column="6" />
+      <File FileName="Assets\CameraAim.cs" Line="37" Column="80" />
+      <File FileName="Assets\MovingGridThings\PlayerInput.cs" Line="45" Column="55" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

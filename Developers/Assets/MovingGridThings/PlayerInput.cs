@@ -14,10 +14,10 @@ public class PlayerInput : MonoBehaviour
 
     void Update()
     {
+        ResetButtons();
         //If we can take input for the player
         if (TurnManager.State == TurnState.Idle)
         {
-            ResetButtons();
             if (Input.GetButtonDown("Move Left"))
             {
                 MoveLeft = true;
@@ -34,7 +34,7 @@ public class PlayerInput : MonoBehaviour
             {
                 MoveBack = true;
             }
-            if(Input.GetButtonDown("Drop Flare"))
+            if (Input.GetButtonDown("Drop Flare"))
             {
                 DropFlare = true;
             }
@@ -42,6 +42,7 @@ public class PlayerInput : MonoBehaviour
 
 
         }
+        MoveForward = Input.GetButton("Move Forward");
     }
 
     public void ResetButtons()
