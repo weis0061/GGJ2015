@@ -19,7 +19,7 @@ public class GridMovingObject : MonoBehaviour
     GridInfo GridTarget;
     GridInfo GridInfo;
     CharacterController CharacterController;
-    GameObject Blank;
+    public float Velocity{ get; private set; }
     public void SetMoveTarget(int x, int y)
     {
         XTarget = x;
@@ -34,8 +34,6 @@ public class GridMovingObject : MonoBehaviour
         GridInfo = Grid.Instance.GetGridInfo(Grid.WorldToGridX(transform.position.x),
                                            Grid.WorldToGridZ(transform.position.z));
         CharacterController = GetComponent<CharacterController>();
-        Blank = (GameObject)GameObject.Instantiate(new GameObject());
-        Blank.transform.parent = transform;
     }
     public void MoveForward()
     {
@@ -92,7 +90,7 @@ public class GridMovingObject : MonoBehaviour
         }
 
     }
-    GridInfo ForwardMovePos
+    public GridInfo ForwardMovePos
     {
         get
         {
@@ -101,10 +99,10 @@ public class GridMovingObject : MonoBehaviour
             int gposY = GridInfo.GridYPos;
             if (FaceDirection == Direction.down)
             {
-                gposY++;
+                gposY--;
             } else if (FaceDirection == Direction.up)
             {
-                gposY--;
+                gposY++;
             } else if (FaceDirection == Direction.right)
             {
                 gposX++;
@@ -141,7 +139,10 @@ public class GridMovingObject : MonoBehaviour
         Vector3 TargetVec;
 
         TargetVec = (position - transform.position).normalized;
-        TargetVec *= AestheticMoveSpeedDivider * Time.deltaTime;
+        Velocity += Time.deltaTime * Defaults.Acceleration;
+        if (Velocity > AestheticMoveSpeedDivider)
+            Velocity = AestheticMoveSpeedDivider;
+        TargetVec *= AestheticMoveSpeedDivider * Time.deltaTime * Velocity;
         TargetVec += Physics.gravity * Time.deltaTime;
 
 
@@ -152,6 +153,7 @@ public class GridMovingObject : MonoBehaviour
         {
             transform.position = position;
             FinishedMoving = true;
+            Velocity = 0;
         }
         if (transform.position.y < Defaults.LowestYPointToFall)
         {
@@ -184,7 +186,6 @@ public class GridMovingObject : MonoBehaviour
     void UpdateRotation()
     {
         Quaternion targetRotation = Quaternion.AngleAxis((int)FaceDirection * 90, Vector3.up);
-        Blank.transform.rotation = targetRotation;
 
         Vector3 TargetVector = new Vector3(0, (int)FaceDirection * 90, 0);
 

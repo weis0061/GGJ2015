@@ -32,6 +32,7 @@ public class Monster : MonoBehaviour
     void Update()
     {
 
+        Animator.SetFloat("Forward", GridMovingObject.Velocity);
     }
 
 }

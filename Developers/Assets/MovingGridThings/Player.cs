@@ -72,8 +72,7 @@ public class Player : MonoBehaviour
 
                 if (PlayerInput.DropFlare)
                 {
-                    Debug.Log("Flare Droped");
-                    flare.DropFlare(transform.position);
+                    flare.DropFlare(transform.position + transform.TransformDirection(new Vector3(-1, 0, 0)));
                     PlayerInput.DropFlare = false;
                 }
             }
@@ -86,7 +85,7 @@ public class Player : MonoBehaviour
         Moving = true;
         TurnManager.DoTurn();
         //TODO: put light decay code here
-            power.ReducePower(lightPowerDecay);
+        power.ReducePower(lightPowerDecay);
     }
     void StopMove()
     {
