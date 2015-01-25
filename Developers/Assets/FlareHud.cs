@@ -24,7 +24,7 @@ public class FlareHud : MonoBehaviour {
 
             for (int i = 0; i <= flare.GetAmountOfFlares; i++)
             {
-                Flares.Add((GameObject)Instantiate(GuiFlare, temp,Quaternion.AngleAxis(-90.0f, Vector3.right)));
+                Flares.Add((GameObject)Instantiate(GuiFlare, temp, Quaternion.AngleAxis(-90.0f, Vector3.right)));
                 Flares[i].transform.parent = startPos.transform;
                 temp.x += Spacing;
             }
