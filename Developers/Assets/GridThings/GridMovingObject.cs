@@ -4,12 +4,15 @@ using System.Collections;
 [RequireComponent(typeof(GridObject))]
 public class GridMovingObject : MonoBehaviour
 {
-    public int XTarget;
-    public int YTarget;
+
+    int XTarget;
+
+    int YTarget;
+    [HideInInspector]
     public bool
         FinishedMoving;
     public float AestheticMoveSpeedDivider;
-    Direction FaceDirection;
+    public Direction FaceDirection;
     GridObject GridObject;
     GridInfo GridTarget;
     GridInfo GridInfo;
@@ -74,7 +77,7 @@ public class GridMovingObject : MonoBehaviour
             }
 
             //TODO: check if there is a wall or obstacle in the way
-            else if (false)
+            else if (ForwardMovePos.ObjectList.Exists(element => element.GetComponent<ObstacleBlock>() != null))
             {
                 return false;
             }
@@ -129,32 +132,36 @@ public class GridMovingObject : MonoBehaviour
         transform.position += (position - transform.position) / SpeedDivider;
         if ((position - transform.position).magnitude < Defaults.MovingObjectLerpSnapDistance)
         {
-            transform.position=position;
+            transform.position = position;
             FinishedMoving = true;
         }
     }
 
-    public void TurnLeft(){
+    public void TurnLeft()
+    {
         FaceDirection += 1;
-        if (FaceDirection >(Direction) 3)
+        if (FaceDirection > (Direction)3)
         {
-            FaceDirection=(Direction)0;
+            FaceDirection = (Direction)0;
         }
     }
-    public void TurnRight(){
+    public void TurnRight()
+    {
         FaceDirection -= 1;
-        if (FaceDirection <(Direction) 0)
+        if (FaceDirection < (Direction)0)
         {
-            FaceDirection=(Direction)3;
+            FaceDirection = (Direction)3;
         }
     }
-    public void TurnBack(){
+    public void TurnBack()
+    {
         TurnRight();
         TurnRight();
     }
-    void UpdateRotation(){
-        Quaternion targetRotation = new Quaternion(0, (int)FaceDirection * 90, 0,0);
-        Debug.Log(targetRotation);
+    void UpdateRotation()
+    {
+        Quaternion targetRotation = new Quaternion(0, (int)FaceDirection * 90, 0, 0);
+        //Debug.Log(targetRotation);
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime);
     }
 

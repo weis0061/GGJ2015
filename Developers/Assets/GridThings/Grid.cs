@@ -11,6 +11,14 @@ public class Grid:MonoBehaviour
     static int m_GWidth = Defaults.GridWidth;
     static int m_GHeight = Defaults.GridHeight;
     static Vector3 GridStartPos = new Vector3(Defaults.GridStartX, 0, Defaults.GridStartZ);
+    public static int NumberOfTiles
+    {
+        get
+        {
+            return Instance.GridWidth * Instance.GridHeight;
+        }
+           
+    }
     #region Singleton
     static Grid m_Instance;
     public static Grid Instance
@@ -35,9 +43,9 @@ public class Grid:MonoBehaviour
             m_Grid.Add(new List<GridInfo>());
             for (int j=0; j<GridHeight; j++)
             {
-                GridInfo GridToAdd=new GridInfo();
-                GridToAdd.GridXPos=i;
-                GridToAdd.GridYPos=j;
+                GridInfo GridToAdd = new GridInfo();
+                GridToAdd.GridXPos = i;
+                GridToAdd.GridYPos = j;
                 m_Grid [i].Add(GridToAdd);
                 //m_Grid [i] [j].GridXPos = i;
                 //m_Grid [i] [j].GridYPos = j;
@@ -68,13 +76,29 @@ public class Grid:MonoBehaviour
 
     public GridInfo GetGridInfo(int x, int y)
     {
+        
+        GridInfo ginfo; 
+        /*
         if (x < 0 || y < 0 || x >= GridWidth || y >= GridHeight)
         {
             Debug.LogError("ERROR: getting grid position X: " + x + " Y: " + y + " is out of bounds");
             return null;
         }
-        GridInfo ginfo = m_Grid [x] [y];
-        return ginfo;
+        if (m_Grid.Count <= x)
+        {
+            ginfo = null;
+        } else if (m_Grid [x].Count <= y)
+        {
+            ginfo = null;
+        } else*/
+
+        if (IsInBounds(x, y))
+        {
+            //if the values are in index range, then actually look up the entity
+            ginfo = m_Grid [x] [y];
+            return ginfo;
+        } else
+            return null;
     }
     
     public static int WorldToGridX(float x)

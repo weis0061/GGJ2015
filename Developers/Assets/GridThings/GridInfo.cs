@@ -11,8 +11,8 @@ public class GridInfo //: MonoBehaviour
     
     //to be used for pathing only
     #region pathing
-    public int DistToPather;
-    public Direction ShortestDirection;
+    public int DistToPather = 0;
+    public Direction ShortestDirection = Direction.down;
     #endregion
 
     public GridInfo()

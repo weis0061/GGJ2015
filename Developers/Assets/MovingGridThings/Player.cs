@@ -7,6 +7,7 @@ using System.Collections;
 [RequireComponent(typeof(PlayerInput))]
 [RequireComponent(typeof(GridMovingObject))]
 [RequireComponent(typeof(FlareDrop))]
+[RequireComponent(typeof(SnapToGrid))]
 [AddComponentMenu("Entities/Player")]
 public class Player : MonoBehaviour
 {
@@ -47,20 +48,21 @@ public class Player : MonoBehaviour
                     
                 }
                 #endif
-                if(PlayerInput.MoveLeft){
+                if (PlayerInput.MoveLeft)
+                {
                     GridMovingObject.TurnLeft();
-                }
-                else if(PlayerInput.MoveRight){
+                } else if (PlayerInput.MoveRight)
+                {
                     GridMovingObject.TurnRight();
-                }
-                else if(PlayerInput.MoveBack){
+                } else if (PlayerInput.MoveBack)
+                {
                     GridMovingObject.TurnBack();
                 }
 
 
 
 
-                if(PlayerInput.DropFlare)
+                if (PlayerInput.DropFlare)
                 {
                     Debug.Log("Flare Droped");
                     flare.DropFlare(transform.position);

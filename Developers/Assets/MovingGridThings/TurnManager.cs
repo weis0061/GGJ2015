@@ -27,13 +27,18 @@ public class TurnManager : MonoBehaviour
     public static void DoTurn()
     {
         //GridMovingObject[] movers = FindObjectsOfType<GridMovingObject>();
-        List<GameObject> gos = new List<GameObject>(Instance.movers.Length);
         State = TurnState.Calculating;
 
-        for (int i=0; i<gos.Count; i++)
+        for (int i=0; i<Instance.movers.Length; i++)
         {
-            gos [i] = Instance.movers [i].gameObject;
+            Monster m = Instance.movers [i].GetComponent<Monster>();
+            if (m != null)
+            {
+                m.DoMove();
+            }
         }
+
+
         State = TurnState.Showing;
     }
 
@@ -42,6 +47,8 @@ public class TurnManager : MonoBehaviour
 
     void Update()
     {
+
+
         for (int i=0; i<movers.Length; i++)
         {
             if (!movers [i].FinishedMoving)
