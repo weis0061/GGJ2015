@@ -39,8 +39,12 @@ public class Player : MonoBehaviour
             {
                 if (PlayerInput.MoveForward)
                 {
-                    StartMove();
-                    GridMovingObject.MoveForward();
+                    if (GridMovingObject.CanMoveForward)
+                    {
+                        StartMove();
+                        GridMovingObject.MoveForward();
+                    }
+
                 } 
 #if DIR4_MOVEMENT
                 else if (pi.MoveBack)
@@ -77,6 +81,7 @@ public class Player : MonoBehaviour
         PlayerInput.ResetButtons();
         Moving = true;
         TurnManager.DoTurn();
+        //TODO: put light decay code here
     }
     void StopMove()
     {

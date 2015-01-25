@@ -2,6 +2,7 @@
 using System.Collections;
 
 [RequireComponent(typeof(GridObject))]
+[RequireComponent(typeof(CharacterController))]
 public class GridMovingObject : MonoBehaviour
 {
 
@@ -161,7 +162,7 @@ public class GridMovingObject : MonoBehaviour
     void UpdateRotation()
     {
         Quaternion targetRotation = new Quaternion(0, (int)FaceDirection * 90, 0, 0);
-        //Debug.Log(targetRotation);
+
         transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, Time.deltaTime);
     }
 

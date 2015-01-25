@@ -9,6 +9,7 @@ public class GridPather : MonoBehaviour
     
     List<GridInfo> PassedTiles;
     List<GridInfo> TileList;
+    List<GridInfo>TileCheckQueue;
     int LowestTileNumber;
     int PlayerPosX;
     int PlayerPosY;
@@ -21,22 +22,38 @@ public class GridPather : MonoBehaviour
 
     public Direction BestPathDir(GridInfo Target)
     {
-
         if (Target == null)
         {
             return Direction.down;
         }
         PassedTiles = new List<GridInfo>();
+        TileCheckQueue = new List<GridInfo>();
 
         GridInfo gInfo = GetComponent<GridObject>().GridInfo;
-        
+        /*
         RecursivelyCheckAdjacentTiles(0, Grid.Instance.GetGridInfo(gInfo.GridXPos + 1, gInfo.GridYPos), Direction.right);
         RecursivelyCheckAdjacentTiles(0, Grid.Instance.GetGridInfo(gInfo.GridXPos, gInfo.GridYPos + 1), Direction.down);
         RecursivelyCheckAdjacentTiles(0, Grid.Instance.GetGridInfo(gInfo.GridXPos - 1, gInfo.GridYPos), Direction.left);
-        RecursivelyCheckAdjacentTiles(0, Grid.Instance.GetGridInfo(gInfo.GridXPos, gInfo.GridYPos - 1), Direction.up);
+        RecursivelyCheckAdjacentTiles(0, Grid.Instance.GetGridInfo(gInfo.GridXPos, gInfo.GridYPos - 1), Direction.up);*/
 
         return Target.ShortestDirection;
     }
+
+    void CheckBreadthRecursively(int StepNumber, GridInfo Tile, Direction dir)
+    {
+        if (!PassedTiles.Contains(Tile))
+        {
+            TileCheckQueue.Add(Grid.Instance.GetGridInfo(Tile.GridXPos + 1, Tile.GridYPos));
+            TileCheckQueue.Add(Grid.Instance.GetGridInfo(Tile.GridXPos, Tile.GridYPos + 1));
+            TileCheckQueue.Add(Grid.Instance.GetGridInfo(Tile.GridXPos - 1, Tile.GridYPos));
+            TileCheckQueue.Add(Grid.Instance.GetGridInfo(Tile.GridXPos, Tile.GridYPos - 1));
+        } else
+        {
+            return;
+        }
+    }
+
+
     void RecursivelyCheckAdjacentTiles(int StepNumber, GridInfo Tile, Direction dir)
     {
         StepNumber++;
@@ -52,10 +69,11 @@ public class GridPather : MonoBehaviour
             {
                 Tile.DistToPather = StepNumber;
                 Tile.ShortestDirection = dir;
+                /*
                 RecursivelyCheckAdjacentTiles(StepNumber, Grid.Instance.GetGridInfo(Tile.GridXPos + 1, Tile.GridYPos), dir);
                 RecursivelyCheckAdjacentTiles(StepNumber, Grid.Instance.GetGridInfo(Tile.GridXPos, Tile.GridYPos + 1), dir);
                 RecursivelyCheckAdjacentTiles(StepNumber, Grid.Instance.GetGridInfo(Tile.GridXPos - 1, Tile.GridYPos), dir);
-                RecursivelyCheckAdjacentTiles(StepNumber, Grid.Instance.GetGridInfo(Tile.GridXPos, Tile.GridYPos - 1), dir);
+                RecursivelyCheckAdjacentTiles(StepNumber, Grid.Instance.GetGridInfo(Tile.GridXPos, Tile.GridYPos - 1), dir);*/
 
             }
         } else
@@ -67,13 +85,16 @@ public class GridPather : MonoBehaviour
             //if the tile has an obstacle on it
             //if (Tile.ObjectList.Exists(element => element.GetComponent<ObstacleBlock>() != null))
             {
-                //  return;
+                // return;
             }
-            Tile.DistToPather = 9999;
+            Tile.DistToPather = StepNumber;
+            Tile.ShortestDirection = dir;
+
             RecursivelyCheckAdjacentTiles(StepNumber, Grid.Instance.GetGridInfo(Tile.GridXPos + 1, Tile.GridYPos), dir);
             RecursivelyCheckAdjacentTiles(StepNumber, Grid.Instance.GetGridInfo(Tile.GridXPos, Tile.GridYPos + 1), dir);
             RecursivelyCheckAdjacentTiles(StepNumber, Grid.Instance.GetGridInfo(Tile.GridXPos - 1, Tile.GridYPos), dir);
             RecursivelyCheckAdjacentTiles(StepNumber, Grid.Instance.GetGridInfo(Tile.GridXPos, Tile.GridYPos - 1), dir);
+            
         }
 
         if (Tile == Target)

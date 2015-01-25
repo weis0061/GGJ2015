@@ -13,6 +13,10 @@ public class Monster : MonoBehaviour
     GridMovingObject GridMovingObject;
 
 
+
+    public Animator Animator;
+
+
     void Start()
     {
         MonsterAI = GetComponent<MonsterAI>();
@@ -23,6 +27,11 @@ public class Monster : MonoBehaviour
     {
         MonsterAI.ChooseDirection();
         GridMovingObject.MoveForward();
+    }
+
+    void Update()
+    {
+
     }
 
 }
