@@ -67,6 +67,9 @@ public class FadeAndGameState : MonoBehaviour
                     currentCol = Color.Lerp(black_Transparent, black, m_fadeTime);
                     if (m_fadeTime >= 1.0f)
                     {
+                        m_fadeTime=0;
+                        gs=GameState.Playing;
+                        currentCol=black_Transparent;
                         Application.LoadLevel(Application.loadedLevelName);
                     }
                 } else if (gs == GameState.Win)
@@ -74,6 +77,9 @@ public class FadeAndGameState : MonoBehaviour
                     currentCol = Color.Lerp(white_Transparent, white, m_fadeTime);
                     if (m_fadeTime >= 1.0f)
                     {
+                        gs=GameState.Playing;
+                        currentCol=black_Transparent;
+                        m_fadeTime=0;
                         Application.LoadLevel("victory");
                     }
                 } else
@@ -82,6 +88,9 @@ public class FadeAndGameState : MonoBehaviour
                 }
             } else
             {
+                gs=GameState.Playing;
+                currentCol=black_Transparent;
+                m_fadeTime=0;
                 Application.LoadLevel(Application.loadedLevelName);
             }
         }

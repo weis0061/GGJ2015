@@ -1,10 +1,11 @@
-﻿using UnityEngine;
+﻿
+#if UNITY_EDITOR
+using UnityEngine;
 using UnityEditor;
 using System.Collections;
 
 public class GridMenu : EditorWindow
 {
-#if UNITY_EDITOR
     [MenuItem("Grid/Snap any snaps")]
     static void SnapAll()
     {
@@ -27,5 +28,6 @@ public class GridMenu : EditorWindow
     {
         EditorWindow.GetWindow<GridMenu>();
     }
-#endif
 }
+
+#endif

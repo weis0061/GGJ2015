@@ -13,7 +13,7 @@ public class Monster : MonoBehaviour
     GridMovingObject GridMovingObject;
 
 
-
+    Player Player;
     public Animator Animator;
 
 
@@ -21,6 +21,8 @@ public class Monster : MonoBehaviour
     {
         MonsterAI = GetComponent<MonsterAI>();
         GridMovingObject = GetComponent<GridMovingObject>();
+
+        Player = FindObjectOfType<Player>();
     }
 
     public void DoMove()
@@ -35,7 +37,10 @@ public class Monster : MonoBehaviour
 
     void Update()
     {
-
+        if (Vector3.Distance(Player.transform.position, transform.position) < 1.0f)
+        {
+            FadeAndGameState.Instance.Lose();
+        }
         Animator.SetFloat("Forward", GridMovingObject.Velocity);
 
     }

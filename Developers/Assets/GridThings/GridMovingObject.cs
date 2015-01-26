@@ -29,6 +29,7 @@ public class GridMovingObject : MonoBehaviour
         GridInfo.ObjectList.Remove(GridObject);
         GridTarget = Grid.Instance.GetGridInfo(x, y);
         GridInfo = GridTarget;
+
     }
     void Start()
     {
@@ -116,8 +117,10 @@ public class GridMovingObject : MonoBehaviour
             if (Grid.IsInBounds(gposX, gposY))
             {
                 ginfo = Grid.Instance.GetGridInfo(gposX, gposY);
-            } else
+            } else{
+                Debug.Log(GridInfo);
                 ginfo = GridInfo;
+            }
             return ginfo;
         }
     }
